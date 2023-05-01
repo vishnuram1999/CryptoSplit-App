@@ -28,7 +28,7 @@ import {
 import NavBar from "../components/NavBar"
 import SideBar from "../components/SideBar";
 import ReadingComponent from "../components/ReadingComponent";
-// import { Interface } from "ethers/lib/utils";
+import { Interface } from "ethers/lib/utils";
 
 export default function Overview() {
     const contractAddr = "0x6Ad319Cd61A94f071AEC3a7e04663Bf793a4eb39";

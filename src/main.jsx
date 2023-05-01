@@ -13,10 +13,10 @@ const config = {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ChakraProvider>
-      <DAppProvider config={config}>
+    <DAppProvider config={config}>
+      <ChakraProvider>
         <App />
-      </DAppProvider>
-    </ChakraProvider>
+      </ChakraProvider>
+    </DAppProvider>
   </React.StrictMode>,
 )
