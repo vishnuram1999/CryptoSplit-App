@@ -28,38 +28,14 @@ import {
 import NavBar from "../components/NavBar"
 import SideBar from "../components/SideBar";
 import ReadingComponent from "../components/ReadingComponent";
+// import { Interface } from "ethers/lib/utils";
 
 export default function Overview() {
-    const contractAddress = "0x6Ad319Cd61A94f071AEC3a7e04663Bf793a4eb39";
-    const abi = [
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "num",
-                    "type": "uint256"
-                }
-            ],
-            "name": "store",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "retrieve",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        }
-    ]; // contract ABI
-    const stateVariable = "number";
+    const contractAddr = "0x6Ad319Cd61A94f071AEC3a7e04663Bf793a4eb39";
+    const ABI = new Interface(
+        [{"inputs":[],"name":"retrieve","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"num","type":"uint256"}],"name":"store","outputs":[],"stateMutability":"nonpayable","type":"function"}]
+        );
+    const method = "retrieve";
 
     return (
         <Box>
@@ -142,7 +118,7 @@ export default function Overview() {
                                                 <UnorderedList>
                                                     <ListItem>Date</ListItem>
                                                     <ListItem>
-                                                        {/* <ReadingComponent contractAddress={contractAddress} abi={abi} stateVariable={stateVariable} /> */}
+                                                        <ReadingComponent contractAddress={ contractAddr } abi={ ABI } stateVariable={ method }/>
                                                     </ListItem>
                                                 </UnorderedList>
                                             </AccordionPanel>
