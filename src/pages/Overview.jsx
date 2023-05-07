@@ -27,15 +27,15 @@ import {
 } from "@chakra-ui/react";
 import NavBar from "../components/NavBar"
 import SideBar from "../components/SideBar";
-import ReadingComponent from "../components/ReadingComponent";
-import { Interface } from "ethers/lib/utils";
+import ReadingComponentForOverviewExpenses from "../components/ReadingComponentForOverviewExpenses";
+import ReadingComponentForOverviewBalances from "../components/ReadingComponentForOverviewBalances";
+import { Interface } from "ethers/lib/utils.js";
 
 export default function Overview() {
-    const contractAddr = "0x6Ad319Cd61A94f071AEC3a7e04663Bf793a4eb39";
-    const ABI = new Interface(
-        [{"inputs":[],"name":"retrieve","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"num","type":"uint256"}],"name":"store","outputs":[],"stateMutability":"nonpayable","type":"function"}]
-        );
-    const method = "retrieve";
+    const contractAddr="0x82C6D3ed4cD33d8EC1E51d0B5Cc1d822Eaa0c3dC"
+    const ABI = new Interface([{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"string","name":"","type":"string"}],"name":"notGroupMember","type":"error"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"string","name":"","type":"string"}],"name":"notMember","type":"error"},{"inputs":[],"name":"notOwner","type":"error"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"string","name":"","type":"string"}],"name":"notValidAddress","type":"error"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"","type":"address"},{"indexed":false,"internalType":"uint256","name":"","type":"uint256"}],"name":"Received","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"","type":"address"},{"indexed":false,"internalType":"uint256","name":"","type":"uint256"}],"name":"sentDonations","type":"event"},{"stateMutability":"payable","type":"fallback"},{"inputs":[{"internalType":"string","name":"_expenseName","type":"string"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_paidID","type":"address"},{"internalType":"address","name":"tokenAddress","type":"address"}],"name":"addExpense","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_expenseName","type":"string"},{"internalType":"string","name":"_groupName","type":"string"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_tokenAddress","type":"address"},{"internalType":"address","name":"_paidID","type":"address"}],"name":"addExpenseEqualBetweenGroup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_expenseName","type":"string"},{"internalType":"string","name":"_groupName","type":"string"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_tokenAddress","type":"address"},{"internalType":"uint256[]","name":"_portions","type":"uint256[]"},{"internalType":"address","name":"_paidID","type":"address"}],"name":"addExpenseUnequalBetweenGroup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_groupName","type":"string"},{"internalType":"address","name":"_id","type":"address"}],"name":"addMemberToGroup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_groupName","type":"string"},{"internalType":"address[]","name":"_group","type":"address[]"}],"name":"createGroup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_expenseName","type":"string"}],"name":"findExpense","outputs":[{"internalType":"string","name":"","type":"string"},{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLatestPrice","outputs":[{"internalType":"int256","name":"","type":"int256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"","type":"string"}],"name":"groups","outputs":[{"internalType":"uint256","name":"groupExpense","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"members","outputs":[{"internalType":"uint256","name":"amountSpend","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_groupName","type":"string"},{"internalType":"address","name":"_id","type":"address"}],"name":"removeMemberFromGroup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"sendDonationsToOwner","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"tokenAddress","type":"address"},{"internalType":"address payable","name":"_toID","type":"address"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_tokenAddress","type":"address"}],"name":"settleBalanceInERC20Token","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address payable","name":"_toID","type":"address"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_tokenAddress","type":"address"}],"name":"settleBalanceInEther","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"showBalanceAddresses","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_addr","type":"address"},{"internalType":"address","name":"_tokenAddress","type":"address"}],"name":"showBalances","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"showExpense","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_expenseName","type":"string"}],"name":"showExpenseAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_groupName","type":"string"}],"name":"showExpenseOfGroup","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_id","type":"address"}],"name":"showExpenseOfMember","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"showExpenses","outputs":[{"internalType":"string[]","name":"","type":"string[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_groupName","type":"string"}],"name":"showGroupMembers","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"showGroups","outputs":[{"internalType":"string[]","name":"","type":"string[]"}],"stateMutability":"view","type":"function"},{"stateMutability":"payable","type":"receive"}])
+    //const ABI = new Interface([{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"string","name":"","type":"string"}],"name":"notGroupMember","type":"error"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"string","name":"","type":"string"}],"name":"notMember","type":"error"},{"inputs":[],"name":"notOwner","type":"error"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"string","name":"","type":"string"}],"name":"notValidAddress","type":"error"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"","type":"address"},{"indexed":false,"internalType":"uint256","name":"","type":"uint256"}],"name":"Received","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"","type":"address"},{"indexed":false,"internalType":"uint256","name":"","type":"uint256"}],"name":"sentDonations","type":"event"},{"stateMutability":"payable","type":"fallback"},{"inputs":[{"internalType":"string","name":"_expenseName","type":"string"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_paidID","type":"address"},{"internalType":"address","name":"tokenAddress","type":"address"}],"name":"addExpense","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_expenseName","type":"string"},{"internalType":"string","name":"_groupName","type":"string"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_tokenAddress","type":"address"},{"internalType":"address","name":"_paidID","type":"address"}],"name":"addExpenseEqualBetweenGroup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_expenseName","type":"string"},{"internalType":"string","name":"_groupName","type":"string"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_tokenAddress","type":"address"},{"internalType":"uint256[]","name":"_portions","type":"uint256[]"},{"internalType":"address","name":"_paidID","type":"address"}],"name":"addExpenseUnequalBetweenGroup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_groupName","type":"string"},{"internalType":"address","name":"_id","type":"address"}],"name":"addMemberToGroup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_groupName","type":"string"},{"internalType":"address[]","name":"_group","type":"address[]"}],"name":"createGroup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_expenseName","type":"string"}],"name":"findExpense","outputs":[{"internalType":"string","name":"","type":"string"},{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getLatestPrice","outputs":[{"internalType":"int256","name":"","type":"int256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"","type":"string"}],"name":"groups","outputs":[{"internalType":"uint256","name":"groupExpense","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"members","outputs":[{"internalType":"uint256","name":"amountSpend","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_groupName","type":"string"},{"internalType":"address","name":"_id","type":"address"}],"name":"removeMemberFromGroup","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"sendDonationsToOwner","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"tokenAddress","type":"address"},{"internalType":"address payable","name":"_toID","type":"address"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_tokenAddress","type":"address"}],"name":"settleBalanceInERC20Token","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address payable","name":"_toID","type":"address"},{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address","name":"_tokenAddress","type":"address"}],"name":"settleBalanceInEther","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"_addr","type":"address"},{"internalType":"address","name":"_tokenAddress","type":"address"}],"name":"showBalances","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"showExpense","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_expenseName","type":"string"}],"name":"showExpenseAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_groupName","type":"string"}],"name":"showExpenseOfGroup","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_id","type":"address"}],"name":"showExpenseOfMember","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"showExpenses","outputs":[{"internalType":"string[]","name":"","type":"string[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_groupName","type":"string"}],"name":"showGroupMembers","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"showGroups","outputs":[{"internalType":"string[]","name":"","type":"string[]"}],"stateMutability":"view","type":"function"},{"stateMutability":"payable","type":"receive"}])
+    const method = "showExpenses"
 
     return (
         <Box>
@@ -105,41 +105,7 @@ export default function Overview() {
                                 </CardHeader>
                                 <CardBody>
                                     <Accordion allowToggle>
-                                        <AccordionItem>
-                                            <h2>
-                                            <AccordionButton>
-                                                <Box as="span" flex='1' textAlign='left'>
-                                                Expense Name 1
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                            </h2>
-                                            <AccordionPanel pb={4}>
-                                                <UnorderedList>
-                                                    <ListItem>Date</ListItem>
-                                                    <ListItem>
-                                                        <ReadingComponent contractAddress={ contractAddr } abi={ ABI } stateVariable={ method }/>
-                                                    </ListItem>
-                                                </UnorderedList>
-                                            </AccordionPanel>
-                                        </AccordionItem>
-
-                                        <AccordionItem>
-                                            <h2>
-                                            <AccordionButton>
-                                                <Box as="span" flex='1' textAlign='left'>
-                                                Expense Name 2
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                            </h2>
-                                            <AccordionPanel pb={4}>
-                                                <UnorderedList>
-                                                    <ListItem>Date</ListItem>
-                                                    <ListItem>Amount in USD</ListItem>
-                                                </UnorderedList>
-                                            </AccordionPanel>
-                                        </AccordionItem>
+                                        <ReadingComponentForOverviewExpenses contractAddress={contractAddr} abi={ABI} stateVariable={method} />
                                     </Accordion>
                                 </CardBody>
                             </Card>
@@ -151,45 +117,7 @@ export default function Overview() {
                                 </CardHeader>
                                 <CardBody>
                                     <Accordion allowToggle>
-                                        <AccordionItem>
-                                            <h2>
-                                            <AccordionButton>
-                                                <Box as="span" flex='1' textAlign='left'>
-                                                Balance 1 Name (Address)
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                            </h2>
-                                            <AccordionPanel pb={4}>
-                                                <HStack>
-                                                    <UnorderedList>
-                                                        <ListItem>Token Amount</ListItem>
-                                                    </UnorderedList>
-                                                    <Spacer />
-                                                    <Button>Settle</Button>
-                                                </HStack>
-                                            </AccordionPanel>
-                                        </AccordionItem>
-
-                                        <AccordionItem>
-                                            <h2>
-                                            <AccordionButton>
-                                                <Box as="span" flex='1' textAlign='left'>
-                                                Balance 1 Name (Address)
-                                                </Box>
-                                                <AccordionIcon />
-                                            </AccordionButton>
-                                            </h2>
-                                            <AccordionPanel pb={4}>
-                                                <HStack>
-                                                    <UnorderedList>
-                                                        <ListItem>Token Amount</ListItem>
-                                                    </UnorderedList>
-                                                    <Spacer />
-                                                    <Button>Settle</Button>
-                                                </HStack>
-                                            </AccordionPanel>
-                                        </AccordionItem>
+                                        <ReadingComponentForOverviewBalances contractAddress={contractAddr} abi={ABI} stateVariable={method} />
                                     </Accordion>
                                 </CardBody>
                             </Card>

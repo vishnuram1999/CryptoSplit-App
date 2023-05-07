@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Spacer, Link, HStack } from "@chakra-ui/react";
+import { Flex, Heading, Spacer, Link, HStack } from "@chakra-ui/react";
 import ConnectButton from "./ConnectButton";
 
 export default function NavBar() {

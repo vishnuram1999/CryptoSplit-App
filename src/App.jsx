@@ -13,6 +13,7 @@ import Home from './pages/Home'
 import Group from './pages/Group'
 import Expense from './pages/Expense'
 
+
 // router and routes
 const router = createBrowserRouter(
   createRoutesFromElements(
